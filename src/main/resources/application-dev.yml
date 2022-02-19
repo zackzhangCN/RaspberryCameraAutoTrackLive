@@ -1,0 +1,46 @@
+server:
+  port: 8080
+
+# 相机相关配置: 音视频设备驱动号, 录制帧率, 录制画面宽高, 录制画面中心区域坐标以及边界线, 屏幕截图保存位置
+camera:
+  audio:
+    device: 4
+  video:
+    device: 0
+    rate: 30
+    width: 1280
+    height: 720
+    center:
+      leftLine: 400
+      rightLine: 880
+      topLine: 225
+      downLine: 495
+      pointX: 640
+      pointY: 360
+  screen:
+    path: /temp.jpg
+# 流媒体服务器配置: 推流地址, 通知流媒体开始/停止录制接口, 录制视频回放地址
+rtmp:
+  push:
+    # rtmp://ip:port/rtmpApplicationName/streamName  或者 本地文件
+    url: C:\output.mp4
+  record:
+    # rtmp开始/停止录制api
+    start: http://ip:port/path?app=rtmpApplicationName&name=streamName&rec=all
+    stop: http://ip:port/path?app=rtmpApplicationName&name=streamName&rec=all
+  history:
+    prefix: http://ip:port/path
+
+# SMTP服务器配置(此处配置为QQ邮箱)
+spring:
+  mail:
+    host: smtp.qq.com
+    username: xxxxxxxxx@qq.com
+    password: password
+    port: 587
+    default-encoding: UTF-8
+    properties:
+      mail:
+        smtp:
+          socketFactoryClass: javax.net.ssl.SSLSocketFactory
+        debug: false
